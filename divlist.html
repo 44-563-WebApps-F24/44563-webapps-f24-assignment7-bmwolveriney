@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html> <head>
+    <title>Play with divs</title>
+    <style>
+    .flex-container {
+      display: flex;  flex-direction:row;
+      background-color: red;
+  }
+
+.flex-container > div {  /*div children of the flex container*/
+  background-color: #f1f1f1; 
+  margin: 10px;  padding: 20px;  font-size: 30px;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) { 
+	 .flex-container{
+		 flex-direction:column;
+		 background-color: green;
+	  }
+	}
+</style></head>
+
+
+
+<body>
+        <h2>Bala builds list with divs</h2>
+
+        <input type="text" id="inputText">
+
+		<div class="flex-container" id="target">
+		  <div class="divlist">row item 1</div>   
+		  <div class="divlist">row item 2</div>  
+		  <div class="divlist">row item 3</div>  
+		</div>
+	
+		<button onclick="addEnd()">Add end</button>
+        <button onclick="remove()">Remove</button>
+        <button onclick="addFront()">Add Front</button>
+
+</body>
+
+
+<script>
+  function addEnd() {
+    container = document.getElementById("target");
+    element = document.createElement("div");
+    inputValue = document.getElementById("inputText").value;
+    element.innerHTML = inputValue;
+    element.className = "divlist";
+    container.appendChild(element);
+  }
+  function remove() {
+    let div_list = document.getElementsByClassName("divlist");
+    let length = div_list.length;
+
+    if (length > 0) {
+      let middleIndex = Math.floor(length / 2);
+      div_list[middleIndex].remove();
+    }
+  }
+  function addFront() {
+    container = document.getElementById("target");
+    element = document.createElement("div");
+    inputValue = document.getElementById("inputText").value;
+
+    element.innerHTML = inputValue;
+    element.className = "divlist";
+    container.insertBefore(element, container.firstChild);
+  }
+</script>
+
+</html>	
